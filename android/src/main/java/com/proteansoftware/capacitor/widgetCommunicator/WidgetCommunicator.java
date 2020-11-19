@@ -1,20 +1,30 @@
 package com.proteansoftware.capacitor.widgetCommunicator;
 
-import com.getcapacitor.JSObject;
+import com.getcapacitor.JSArray;
 import com.getcapacitor.NativePlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 
+import org.json.JSONException;
+
+import java.util.Collections;
+import java.util.List;
+
 @NativePlugin
 public class WidgetCommunicator extends Plugin {
 
-    @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
+    public static List WidgetData = null;
 
-        JSObject ret = new JSObject();
-        ret.put("value", value);
-        call.success(ret);
+    @PluginMethod
+    public void updateWidgetData(PluginCall call) {
+        JSArray value = call.getArray("data");
+
+        try {
+            WidgetData = Collections.unmodifiableList(value.toList());
+            call.success();
+        } catch (JSONException e) {
+            call.error(e.getMessage(), e);
+        }
     }
 }

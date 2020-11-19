@@ -5,5 +5,5 @@ declare module '@capacitor/core' {
 }
 
 export interface WidgetCommunicatorPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  updateWidgetData(options: { data: any[] }): Promise<void>;
 }

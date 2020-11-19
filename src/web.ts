@@ -9,9 +9,8 @@ export class WidgetCommunicatorWeb extends WebPlugin implements WidgetCommunicat
     });
   }
 
-  async echo(options: { value: string }): Promise<{ value: string }> {
-    console.log('ECHO', options);
-    return options;
+  async updateWidgetData(): Promise<void> {
+    throw new Error("Not supported on web right now");
   }
 }
 
