@@ -1,6 +1,6 @@
 {
   "name": "@proteansoftware/capacitor-widget-communicator",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Allows for sending of data to a widget",
   "main": "dist/plugin.js",
   "module": "dist/esm/index.js",

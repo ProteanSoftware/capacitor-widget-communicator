@@ -14,17 +14,18 @@ import java.util.List;
 @NativePlugin
 public class WidgetCommunicator extends Plugin {
 
-    public static List WidgetData = null;
+  public static WidgetData WidgetData = new WidgetData();
 
-    @PluginMethod
-    public void updateWidgetData(PluginCall call) {
-        JSArray value = call.getArray("data");
+  @PluginMethod
+  public void updateWidgetData(PluginCall call) {
+    JSArray value = call.getArray("data");
 
-        try {
-            WidgetData = Collections.unmodifiableList(value.toList());
-            call.success();
-        } catch (JSONException e) {
-            call.error(e.getMessage(), e);
-        }
+    try {
+      List<JSONObject> data = value.toList();
+      WidgetData.setWidgetData(data);
+      call.success();
+    } catch (JSONException e) {
+      call.error(e.getMessage(), e);
     }
+  }
 }
